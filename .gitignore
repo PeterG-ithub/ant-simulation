@@ -1,0 +1,6 @@
+src/include/SDL2/
+lib/
+SDL2.dll
+
+*.exe
+.vscode
