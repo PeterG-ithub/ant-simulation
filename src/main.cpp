@@ -8,7 +8,7 @@ int main() {
     sf::Clock clock;
     while (window.isOpen()) {
         sf::Time deltaTimeTimer = clock.restart();
-        double deltaTime = deltaTimeTimer.asMicroseconds() / 1000.0;
+        float deltaTime = deltaTimeTimer.asMicroseconds() / 1000000.0;
         
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -17,6 +17,7 @@ int main() {
         }
 
         ant.update(deltaTime);
+        ant.move(500.0f, 30.0f, 100.0f, deltaTime);
 
         window.clear(sf::Color::White);
         ant.draw(window);

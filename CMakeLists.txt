@@ -10,7 +10,9 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(ant_sim src/main.cpp src/entities/Ant.cpp)
+file(GLOB_RECURSE SOURCES src/*.cpp src/*.cpp src/**/*.cpp)
+
+add_executable(ant_sim ${SOURCES})
 target_link_libraries(ant_sim PRIVATE sfml-graphics)
 target_compile_features(ant_sim PRIVATE cxx_std_17)
 
