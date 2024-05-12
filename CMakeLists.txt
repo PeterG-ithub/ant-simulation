@@ -10,8 +10,7 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-
-add_executable(ant_sim src/main.cpp)
+add_executable(ant_sim src/main.cpp src/entities/Ant.cpp)
 target_link_libraries(ant_sim PRIVATE sfml-graphics)
 target_compile_features(ant_sim PRIVATE cxx_std_17)
 
@@ -41,3 +40,5 @@ add_custom_command(TARGET ant_sim POST_BUILD
     ${RESOURCES_DIR} ${OUTPUT_RESOURCES_DIR}
     COMMENT "Copying resources to ${OUTPUT_RESOURCES_DIR}"
 )
+
+include_directories(include)
