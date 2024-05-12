@@ -10,6 +10,7 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
+
 add_executable(ant_sim src/main.cpp)
 target_link_libraries(ant_sim PRIVATE sfml-graphics)
 target_compile_features(ant_sim PRIVATE cxx_std_17)
@@ -23,3 +24,20 @@ if(WIN32)
 endif()
 
 install(TARGETS ant_sim)
+
+# Define the directory where your resources are located
+set(RESOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/res)
+set(OUTPUT_RESOURCES_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/res)
+# Determine the output directory for resources based on the build type
+if (WIN32)
+    set(OUTPUT_RESOURCES_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/res)
+else()
+    set(OUTPUT_RESOURCES_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/res)
+endif()
+
+# Add a custom command to copy the resources directory after build
+add_custom_command(TARGET ant_sim POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${RESOURCES_DIR} ${OUTPUT_RESOURCES_DIR}
+    COMMENT "Copying resources to ${OUTPUT_RESOURCES_DIR}"
+)

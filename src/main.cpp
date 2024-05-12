@@ -11,7 +11,7 @@ int main()
 //---------------Initialize-----------------------------------
 
 //---------------Load-----------------------------------------
-    if(texture.loadFromFile("../../res/images/ant_walk.png")) 
+    if(texture.loadFromFile("res/images/ant_walk.png")) 
     {
         std::cout << "Image loaded" << std::endl;
         sprite.setTexture(texture);
