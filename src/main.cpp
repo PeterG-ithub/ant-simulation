@@ -16,7 +16,7 @@ int main() {
                 window.close();
         }
 
-        ant.update(deltaTime);
+        ant.animate(deltaTime);
         ant.move(500.0f, 30.0f, 100.0f, deltaTime);
 
         window.clear(sf::Color::White);

@@ -26,11 +26,7 @@ void Ant::load()
 
 void Ant::update(float deltaTime)
 {
-    elapsedTime += deltaTime;
-    int currentFrame = static_cast<int>(elapsedTime / animationTime) % totalFrames;
-    int row = currentFrame / numColumns;
-    int column = currentFrame % numColumns;
-    sprite.setTextureRect(sf::IntRect(column * 202, row * 248, 202, 248));
+
 }
 
 void Ant::draw(sf::RenderWindow &window)
@@ -54,4 +50,13 @@ void Ant::move(float targetX, float targetY, float velocity, float deltaTime)
         sf::Vector2f newPosition(currentPosition.x + normalizedDirection.x * distance, currentPosition.y + normalizedDirection.y * distance);
         sprite.setPosition(newPosition);
     }
+}
+
+void Ant::animate(float deltaTime)
+{
+    elapsedTime += deltaTime;
+    int currentFrame = static_cast<int>(elapsedTime / animationTime) % totalFrames;
+    int row = currentFrame / numColumns;
+    int column = currentFrame % numColumns;
+    sprite.setTextureRect(sf::IntRect(column * 202, row * 248, 202, 248));
 }
