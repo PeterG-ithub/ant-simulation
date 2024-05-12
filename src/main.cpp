@@ -11,22 +11,33 @@ int main()
 //---------------Initialize-----------------------------------
 
 //---------------Load-----------------------------------------
-    if(texture.loadFromFile("../../../res/images/ant_walk.png")) 
+    if(texture.loadFromFile("../../res/images/ant_walk.png")) 
     {
         std::cout << "Image loaded" << std::endl;
         sprite.setTexture(texture);
         sprite.setPosition(sf::Vector2f(0, 0));
+        sprite.setScale(sf::Vector2f(0.2, 0.2));
+
+
+        sprite.setTextureRect(sf::IntRect(0, 0, 202, 248));
     }
     else
     {
         std::cerr << "Image not loaded" << std::endl;
     }
+
     rectangle.setSize(sf::Vector2f(100, 50));
     rectangle.setOutlineColor(sf::Color::Red);
     rectangle.setOutlineThickness(5);
     rectangle.setPosition(10, 20);
 
     sf::Clock clock;
+    float animationSpeed = 0.1f;
+    float animationTime = 1.0f / animationSpeed;
+    static float elapsedTime = 0.0f;
+    int numColumns = 4;
+    int numRows = 8;
+    int totalFrames = numColumns * numRows;
 //---------------Load-----------------------------------------
 
 //--------------Update---------------------------------------- 
@@ -51,6 +62,18 @@ int main()
             rectangle.setPosition(position + sf::Vector2f(0, 1) * (float)deltaTime);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
             rectangle.setPosition(position + sf::Vector2f(1, 0) * (float)deltaTime);
+
+        elapsedTime += deltaTime;
+
+        // Calculate current frame index
+        int currentFrame = static_cast<int>(elapsedTime / animationTime) % totalFrames;
+
+        // Calculate row and column indices
+        int row = currentFrame / numColumns;
+        int column = currentFrame % numColumns;
+
+        // Set texture rectangle
+        sprite.setTextureRect(sf::IntRect(column * 202, row * 248, 202, 248));
 //--------------Update----------------------------------------
 
 //--------------Draw------------------------------------------
