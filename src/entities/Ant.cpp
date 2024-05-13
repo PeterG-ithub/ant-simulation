@@ -44,7 +44,7 @@ void Ant::move(float targetX, float targetY, float velocity, float deltaTime)
     {
         sf::Vector2f normalizedDirection = Math::normalize(direction);
         std::cout << normalizedDirection.x << " : " << normalizedDirection.y << std::endl;
-        float angle = 90.0f + std::atan2(normalizedDirection.y, normalizedDirection.x) * 180.0f / 2 * acos(0.0);
+        float angle = 90.0f + std::atan2(normalizedDirection.y, normalizedDirection.x) * 180.0f / 3.1415263f;
         std::cout << angle << std::endl;
         sprite.setRotation(angle);
         sf::Vector2f newPosition(currentPosition.x + normalizedDirection.x * distance, currentPosition.y + normalizedDirection.y * distance);
