@@ -11,9 +11,23 @@ void Colony::load()
 void Colony::draw(sf::RenderWindow &window)
 {
     window.draw(colony);
+    for (Ant& ant : ants) {
+        std::cout << "Drawing ant at position: " << colony.getPosition().x << ", " << colony.getPosition().y << std::endl;
+        ant.draw(window);
+    }
 }
 
 void Colony::update(float deltaTime)
 {
 
+}
+
+void Colony::generateAnt()
+{
+    Ant ant;
+    ant.load();
+    ant_texture.loadFromFile("res/images/ant_walk.png");
+    ant.sprite.setTexture(ant_texture);
+    ant.setPos(colony.getPosition());
+    ants.push_back(ant);
 }

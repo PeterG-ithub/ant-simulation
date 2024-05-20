@@ -43,9 +43,9 @@ void Ant::move(float targetX, float targetY, float velocity, float deltaTime)
     if (distanceToTarget > distance)
     {
         sf::Vector2f normalizedDirection = Math::normalize(direction);
-        std::cout << normalizedDirection.x << " : " << normalizedDirection.y << std::endl;
+        // std::cout << normalizedDirection.x << " : " << normalizedDirection.y << std::endl;
         float angle = 90.0f + std::atan2(normalizedDirection.y, normalizedDirection.x) * 180.0f / 3.1415263f;
-        std::cout << angle << std::endl;
+        // std::cout << angle << std::endl;
         sprite.setRotation(angle);
         sf::Vector2f newPosition(currentPosition.x + normalizedDirection.x * distance, currentPosition.y + normalizedDirection.y * distance);
         sprite.setPosition(newPosition);
@@ -59,4 +59,9 @@ void Ant::animate(float deltaTime)
     int row = currentFrame / numColumns;
     int column = currentFrame % numColumns;
     sprite.setTextureRect(sf::IntRect(column * 202, row * 248, 202, 248));
+}
+
+void Ant::setPos(sf::Vector2f pos)
+{
+    sprite.setPosition(pos);
 }
