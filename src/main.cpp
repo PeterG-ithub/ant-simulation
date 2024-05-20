@@ -1,19 +1,17 @@
 #include "entities/Ant.h"
+#include "entities/Colony.h"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1200, 900), "Ant Simulation");
     Ant ant;
     Ant ant2;
+    Colony colony;
 
+    //----------------Load-------------------------
     ant.load();
     ant2.load();
+    colony.load();
 
-//----------Colony---------------------------
-    sf::CircleShape colony;
-    colony.setRadius(50.0f);
-    colony.setOrigin(sf::Vector2f(50.0f, 50.0f));
-    colony.setPosition(sf::Vector2f(400.0f, 300.0f));
-    colony.setFillColor(sf::Color::Red);
 
     sf::Clock clock;
     while (window.isOpen()) {
@@ -25,7 +23,7 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-
+    //----------------Update-------------------------
         ant2.animate(deltaTime);
         ant.animate(deltaTime);
         std::cout << "ant1" << std::endl;
@@ -33,10 +31,12 @@ int main() {
 
         std::cout << "ant2" << std::endl;
         ant2.move(200.0f, 200.0f, 100.0f, deltaTime);
+
+    //------------------Draw--------------------------
         window.clear(sf::Color::White);
         ant.draw(window);
         ant2.draw(window);
-        window.draw(colony);
+        colony.draw(window);
         window.display();
     }
 
