@@ -1,0 +1,13 @@
+@echo off
+
+echo Removing previous build...
+powershell Remove-Item -Force -Recurse .\build\
+
+echo Configuring CMake...
+cmake -S . -B build
+
+echo Building project...
+cmake --build build --config Release
+
+echo Running the executable...
+.\build\bin\Release\ant_sim.exe
