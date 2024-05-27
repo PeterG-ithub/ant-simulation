@@ -12,14 +12,16 @@ void Colony::draw(sf::RenderWindow &window)
 {
     window.draw(colony);
     for (Ant& ant : ants) {
-        std::cout << "Drawing ant at position: " << colony.getPosition().x << ", " << colony.getPosition().y << std::endl;
         ant.draw(window);
     }
 }
 
 void Colony::update(float deltaTime)
 {
-
+    for (Ant& ant : ants) {
+        ant.move(200.0f, 200.0f, 100.0f, deltaTime);
+        ant.animate(deltaTime);
+    }
 }
 
 void Colony::generateAnt()

@@ -1,9 +1,8 @@
 #include "entities/Ant.h"
-#include "util/Math.h"
 
 Ant::Ant() : animationSpeed(30.0f), animationTime(1.0f / animationSpeed), elapsedTime(0.0f), numColumns(4), numRows(8)
 {
-    // Constructor
+    std::srand(std::time(nullptr));
 }
 
 void Ant::load()
@@ -34,20 +33,23 @@ void Ant::draw(sf::RenderWindow &window)
     window.draw(sprite);
 }
 
-void Ant::move(float targetX, float targetY, float velocity, float deltaTime)
-{
+void Ant::move(float targetX, float targetY, float velocity, float deltaTime) {
     sf::Vector2f currentPosition = sprite.getPosition();
     sf::Vector2f direction(targetX - currentPosition.x, targetY - currentPosition.y);
-    float distanceToTarget = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+    float distanceToTarget = Math::distance(currentPosition, sf::Vector2f(targetX, targetY));
     float distance = velocity * deltaTime;
+
     if (distanceToTarget > distance)
     {
+        // Move towards the target
         sf::Vector2f normalizedDirection = Math::normalize(direction);
-        // std::cout << normalizedDirection.x << " : " << normalizedDirection.y << std::endl;
-        float angle = 90.0f + std::atan2(normalizedDirection.y, normalizedDirection.x) * 180.0f / 3.1415263f;
-        // std::cout << angle << std::endl;
+
+        // Set sprite to look at where its moving
+        float angle = 90.0f + std::atan2(normalizedDirection.y, normalizedDirection.x) * 180.0f / M_PI;
         sprite.setRotation(angle);
-        sf::Vector2f newPosition(currentPosition.x + normalizedDirection.x * distance, currentPosition.y + normalizedDirection.y * distance);
+
+        // Move sprite 
+        sf::Vector2f newPosition = currentPosition + normalizedDirection * distance;
         sprite.setPosition(newPosition);
     }
 }

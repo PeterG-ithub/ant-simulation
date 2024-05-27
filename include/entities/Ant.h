@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <time.h>
+#include "util/Math.h"
 
 class Ant 
 {
