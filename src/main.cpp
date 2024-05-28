@@ -2,14 +2,13 @@
 #include "entities/Colony.h"
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(1200, 900), "Ant Simulation");
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Ant Simulation");
     Colony colony;
-
     //----------------Load-------------------------
     colony.load();
 
     colony.generateAnt();
-
+    
     sf::Clock clock;
     while (window.isOpen()) {
         sf::Time deltaTimeTimer = clock.restart();
@@ -22,7 +21,6 @@ int main() {
         }
     //----------------Update-------------------------
         colony.update(deltaTime);
-        
     //------------------Draw--------------------------
         window.clear(sf::Color::White);
         colony.draw(window);

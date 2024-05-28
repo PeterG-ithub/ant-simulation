@@ -4,7 +4,7 @@ void Colony::load()
 {
     colony.setRadius(50.0f);
     colony.setOrigin(sf::Vector2f(50.0f, 50.0f));
-    colony.setPosition(sf::Vector2f(400.0f, 300.0f));
+    colony.setPosition(sf::Vector2f(900.0f, 500.0f));
     colony.setFillColor(sf::Color::Red);
 }
 
@@ -19,7 +19,8 @@ void Colony::draw(sf::RenderWindow &window)
 void Colony::update(float deltaTime)
 {
     for (Ant& ant : ants) {
-        ant.move(200.0f, 200.0f, 100.0f, deltaTime);
+        //ant.move(sf::Vector2f(-10.0f, -10.0f), deltaTime);
+        ant.moveRandomly(deltaTime);
         ant.animate(deltaTime);
     }
 }
