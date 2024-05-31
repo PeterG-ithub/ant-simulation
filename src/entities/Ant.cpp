@@ -1,8 +1,7 @@
 #include "entities/Ant.h"
 
-Ant::Ant() : animationSpeed(60.0f), animationTime(1.0f / animationSpeed), elapsedTime(0.0f), numColumns(4), numRows(8), velocity(320.0f)
+Ant::Ant() : animationSpeed(60.0f), animationTime(1.0f / animationSpeed), elapsedTime(0.0f), numColumns(4), numRows(8), velocity(160.0f)
 {
-    std::srand(std::time(nullptr));
 }
 
 void Ant::load()
@@ -16,6 +15,7 @@ void Ant::load()
         sprite.setTextureRect(sf::IntRect(0, 0, 202, 248));
         sprite.setOrigin(sf::Vector2f(sprite.getLocalBounds().width / 2.0f, sprite.getLocalBounds().height / 2.0f));
         totalFrames = numColumns * numRows;
+        direction = randomDirection(180.0f);
     }
     else
     {
@@ -51,7 +51,6 @@ void Ant::lookTowards(sf::Vector2f direction) {
 void Ant::moveRandomly(float deltaTime) {
     // Update the timer
     directionChangeTimer += deltaTime * 1000.0f;
-    std::cout << directionChangeTimer << std::endl;
     // Check if it's time to change direction
     if (directionChangeTimer >= directionChangeCooldown) {
         directionChangeTimer = 0.0f; // Reset the timer
@@ -64,6 +63,7 @@ void Ant::moveRandomly(float deltaTime) {
     }
 }
 
+//returns a direction in normalized vector
 sf::Vector2f Ant::randomDirection(float peripheralRange) {
     sf::Vector2f currentDirection = direction;
     float direction_d = Math::vectorToDegrees(currentDirection);
@@ -84,4 +84,9 @@ void Ant::animate(float deltaTime)
 void Ant::setPos(sf::Vector2f pos)
 {
     sprite.setPosition(pos);
+}
+
+void Ant::setDirection(sf::Vector2f dir)
+{
+    direction = dir;
 }

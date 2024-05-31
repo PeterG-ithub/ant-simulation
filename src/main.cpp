@@ -3,12 +3,15 @@
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Ant Simulation");
+    std::srand(std::time(nullptr));
     Colony colony;
     //----------------Load-------------------------
     colony.load();
+    for (size_t i = 0; i < 20; i++)
+    {
+        colony.generateAnt();
+    }
 
-    colony.generateAnt();
-    
     sf::Clock clock;
     while (window.isOpen()) {
         sf::Time deltaTimeTimer = clock.restart();
