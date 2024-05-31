@@ -20,6 +20,9 @@ void Colony::draw(sf::RenderWindow &window)
 void Colony::update(float deltaTime)
 {
     for (Ant& ant : ants) {
+        if (isAntOutside(ant)) {
+            ant.setPos(colony.getPosition());
+        }
         ant.moveRandomly(deltaTime);
         ant.animate(deltaTime);
     }
@@ -32,4 +35,9 @@ void Colony::generateAnt()
     ant.sprite.setTexture(ant_texture);
     ant.setPos(colony.getPosition());
     ants.push_back(ant);
+}
+
+bool Colony::isAntOutside(Ant& ant) {
+    sf::Vector2f position = ant.sprite.getPosition();
+    return (position.x < 0 || position.x > 1920 || position.y < 0 || position.y > 1080);
 }

@@ -3,6 +3,5 @@
 
 class Simulation {
 public:
-    void isAntOutside(Ant ant);
 private:
 };
