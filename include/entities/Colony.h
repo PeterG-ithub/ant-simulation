@@ -15,6 +15,7 @@ public:
     void update(float deltaTime); // Update logic
     void draw(sf::RenderWindow& window); // Draw the ant on the window
     void generateAnt();
+    bool isAntOutside(Ant& ant);
 private:
     sf::CircleShape colony;
 };
