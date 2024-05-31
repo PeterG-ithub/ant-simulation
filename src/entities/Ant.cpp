@@ -9,7 +9,6 @@ void Ant::load()
     if (texture.loadFromFile("res/images/ant_walk.png"))
     {
         std::cout << "Image loaded" << std::endl;
-        sprite.setTexture(texture);
         sprite.setPosition(sf::Vector2f(0, 0));
         sprite.setScale(sf::Vector2f(0.08, 0.08));
         sprite.setTextureRect(sf::IntRect(0, 0, 202, 248));
