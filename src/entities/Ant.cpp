@@ -24,12 +24,13 @@ void Ant::load()
 
 void Ant::update(float deltaTime)
 {
-
+    calculateTargetPosition();
 }
 
 void Ant::draw(sf::RenderWindow &window)
 {
     window.draw(sprite);
+    drawTargetPosition(window);
 }
 
 void Ant::move(sf::Vector2f movementDirection, float deltaTime) {
@@ -88,4 +89,18 @@ void Ant::setPos(sf::Vector2f pos)
 void Ant::setDirection(sf::Vector2f dir)
 {
     direction = dir;
+}
+
+void Ant::drawTargetPosition(sf::RenderWindow& window) {
+    float radius = 2.5f;
+    sf::CircleShape target(radius);
+    target.setFillColor(sf::Color::Green);
+    target.setOrigin(sf::Vector2f(radius, radius));
+    target.setPosition(targetPosition);
+    window.draw(target);
+}
+
+void Ant::calculateTargetPosition() 
+{
+    targetPosition = sprite.getPosition() + 5.0f * direction;
 }

@@ -21,7 +21,10 @@ public:
     void lookTowards(sf::Vector2f movementDirection);
     void moveRandomly(float deltaTime);
     void setDirection(sf::Vector2f dir);
+    void calculateTargetPosition();
+    void drawTargetPosition(sf::RenderWindow& window);
     sf::Vector2f randomDirection(float peripheralRange);
+    sf::Vector2f targetPosition;
 private:
     sf::Texture texture;
     sf::Vector2f direction;

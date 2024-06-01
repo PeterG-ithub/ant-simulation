@@ -10,7 +10,7 @@ int main() {
     //----------------Load-------------------------
     colony.load();
     env.createWorldBorder(window);
-    for (size_t i = 0; i < 20; i++)
+    for (size_t i = 0; i < 5; i++)
     {
         colony.generateAnt();
     }

@@ -23,6 +23,7 @@ void Colony::update(float deltaTime)
         if (isAntOutside(ant)) {
             ant.setPos(colony.getPosition());
         }
+        ant.update(deltaTime);
         ant.moveRandomly(deltaTime);
         ant.animate(deltaTime);
     }
@@ -38,6 +39,6 @@ void Colony::generateAnt()
 }
 
 bool Colony::isAntOutside(Ant& ant) {
-    sf::Vector2f position = ant.sprite.getPosition();
+    sf::Vector2f position = ant.targetPosition;
     return (position.x < 0 || position.x > 1920 || position.y < 0 || position.y > 1080);
 }
