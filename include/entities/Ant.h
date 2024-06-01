@@ -24,13 +24,13 @@ public:
     void calculateTargetPosition();
     void drawTargetPosition(sf::RenderWindow& window);
     sf::Vector2f randomDirection(float peripheralRange);
+    sf::Vector2f direction;
     sf::Vector2f targetPosition;
 private:
     sf::Texture texture;
-    sf::Vector2f direction;
     float velocity;
-    float directionChangeCooldown = 1.0f; // Cooldown in seconds
-    float directionChangeTimer = 0.0f;
+    float directionChangeCooldown; // Cooldown in seconds
+    float directionChangeTimer;
     float animationSpeed;
     float animationTime;
     float elapsedTime;

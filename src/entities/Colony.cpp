@@ -20,9 +20,18 @@ void Colony::draw(sf::RenderWindow &window)
 void Colony::update(float deltaTime)
 {
     for (Ant& ant : ants) {
+        //Collision reaction when ant is outside
         if (isAntOutside(ant)) {
-            ant.setPos(colony.getPosition());
+            sf::Vector2f position = ant.targetPosition;
+            if (position.x < 0 || position.x > 1920) {
+                ant.setDirection(sf::Vector2f(-ant.direction.x, ant.direction.y));
+            } else {
+                ant.setDirection(sf::Vector2f(ant.direction.x, -ant.direction.y));
+            }
+            
+
         }
+
         ant.update(deltaTime);
         ant.moveRandomly(deltaTime);
         ant.animate(deltaTime);

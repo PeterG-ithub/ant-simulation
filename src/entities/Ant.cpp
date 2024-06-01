@@ -1,9 +1,16 @@
 #include "entities/Ant.h"
 
-Ant::Ant() : animationSpeed(60.0f), animationTime(1.0f / animationSpeed), elapsedTime(0.0f), numColumns(4), numRows(8), velocity(160.0f)
+Ant::Ant() : 
+    animationSpeed(60.0f),
+    animationTime(1.0f / animationSpeed),
+    elapsedTime(0.0f),
+    numColumns(4),
+    numRows(8),
+    velocity(320.0f),
+    directionChangeCooldown(2.0f),
+    directionChangeTimer(2.0f)
 {
 }
-
 void Ant::load()
 {
     if (texture.loadFromFile("res/images/ant_walk.png"))
